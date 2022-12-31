@@ -82,7 +82,7 @@ void loop() {
 
   //START ボタンが押されるまで待つ
   while (digitalRead(START) != HIGH) {
-    vga.delay(1); //入れずに ; だけにすると、映像出力が不安定になるので入れている
+    ;
   }
 
   //ボールが落ちるまで、継続する
