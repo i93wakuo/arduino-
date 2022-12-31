@@ -57,6 +57,7 @@ void loop() {
     }
   }
 
+  //初めはボールは、左上に進む
   xangle = A_LEFT;
   yangle = A_UP;
 
@@ -105,28 +106,24 @@ void loop() {
 
     if (by == py && (bx >= px && bx <= px + BAR) ? 1 : 0) { //ボールがバーに触れたら
       vga.fillrect(bx, by, 1, 1, 0);  //今まであった場所のボールを消す
-      //  --by; //ボールを上方向へ
       yangle = A_UP;  //ボールの角度を上方向へ
       vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
     }
 
     if (by < 0) {  //ボールが天井に触れたら
       vga.fillrect(bx, by, 1, 1, 0);  //今まであった場所のボールを消す
-      //    ++by; //ボールを下方向
       yangle = A_DOWN;  //ボールの角度を下方向へ
       vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
     }
 
     if (bx > WIDTH) {  //ボールが右の壁に触れたら
       vga.fillrect(bx, by, 1, 1, 0);  //今まであった場所のボールを消す
-      //    --bx; //ボールを左方向へ
       xangle = A_LEFT;
       vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
     }
 
     if (bx < 0) {  //ボールが左の壁に触れたら
       vga.fillrect(bx, by, 1, 1, 0);  //今まであった場所のボールを消す
-      //   ++bx; //ボールを右方向へ
       xangle = A_RIGHT;
       vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
     }
@@ -143,10 +140,10 @@ void loop() {
 
             switch (yangle) {
               case A_DOWN:
-                yangle = A_UP;
+                yangle = A_UP;  //ボールを上方向へ
                 break;
               case A_UP:
-                yangle = A_DOWN;
+                yangle = A_DOWN;  //ボールをした方向へ
                 break;
             }
             vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
@@ -157,7 +154,7 @@ void loop() {
 
     //慣性
     vga.fillrect(bx, by, 1, 1, 0);  //ボールを消す
-    switch (xangle) {
+    switch (xangle) { //ボールが右を向いていたら、右のままでいる
       case A_LEFT:
         --bx;
         break;
@@ -165,7 +162,7 @@ void loop() {
         ++bx;
         break;
     }
-    switch (yangle) {
+    switch (yangle) { //ボールが下を向いていたら、下のままでいる
       case A_DOWN:
         ++by;
         break;
@@ -173,7 +170,7 @@ void loop() {
         --by;
         break;
     }
-    vga.fillrect(bx, by, 1, 1, BALLCOLOR);
+    vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
 
     vga.delay(SPEED); //スピード
 
