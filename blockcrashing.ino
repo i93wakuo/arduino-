@@ -143,7 +143,7 @@ void loop() {
                 yangle = A_UP;  //ボールを上方向へ
                 break;
               case A_UP:
-                yangle = A_DOWN;  //ボールをした方向へ
+                yangle = A_DOWN;  //ボールを下方向へ
                 break;
             }
             vga.fillrect(bx, by, 1, 1, BALLCOLOR);  //ボールの描画
